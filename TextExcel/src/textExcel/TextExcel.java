@@ -23,5 +23,5 @@ public class TextExcel {
 		} while (!decision.toUpperCase().equals("QUIT"));
 		//TestsALL.Helper th = new TestsALL.Helper();
 		//System.out.println(sheet.getGridText());
-	}
+	} 
 }
