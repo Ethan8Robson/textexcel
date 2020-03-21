@@ -32,8 +32,16 @@ public class Spreadsheet implements Grid {
 			Location cellLocation = new SpreadsheetLocation(splitCommand[1]);
 			clear(cellLocation);
 		} else if (splitCommand.length == 3) {
-			Location cellLocation =  new SpreadsheetLocation(splitCommand[0]);
-			sheet[cellLocation.getRow()][cellLocation.getCol()] = new TextCell(splitCommand[2]);
+			Location cellLocation = new SpreadsheetLocation(splitCommand[0]);
+			if (splitCommand[2].substring(0,1).equals("\"")) {
+				sheet[cellLocation.getRow()][cellLocation.getCol()] = new TextCell(splitCommand[2]);
+			} else if (splitCommand[2].contains("%")) {
+				sheet[cellLocation.getRow()][cellLocation.getCol()] = new PercentCell(splitCommand[2]);
+			} else if (splitCommand[2].contains("(")) {
+				sheet[cellLocation.getRow()][cellLocation.getCol()] = new FormulaCell(splitCommand[2]);
+			} else {
+				sheet[cellLocation.getRow()][cellLocation.getCol()] = new ValueCell(splitCommand[2]);
+			}
 		} else {
 			Location cellLocation = new SpreadsheetLocation(splitCommand[0]);
 			return sheet[cellLocation.getRow()][cellLocation.getCol()].fullCellText();

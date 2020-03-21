@@ -1,8 +1,8 @@
 package textExcel;
 
 public class TextCell implements Cell {
-	String textString;
-	String abbrTextString;
+	private String textString;
+	private String abbrTextString;
 	public TextCell(String stringInput) {
 		textString = stringInput;
 		String noQuotes = stringInput.substring(1, stringInput.length()-1) + "          ";
