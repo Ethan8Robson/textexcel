@@ -1,4 +1,5 @@
 package textExcel;
+import java.util.*;
 
 public class FormulaCell extends RealCell {
 	private String fullText;
@@ -18,15 +19,22 @@ public class FormulaCell extends RealCell {
 	}
 
 	public double getDoubleValue() {
-		String tempVar = fullText.substring(2, fullText.length()-2);
+		String tempVar = "+ " + fullText.substring(2, fullText.length()-2);
 		String[] splitEquation = tempVar.split(" ");
-		double total = Double.parseDouble(splitEquation[0]);
-		for (int i = 1; i < splitEquation.length; i += 2) {
+		double total = 0;
+		for (int i = 0; i < splitEquation.length; i += 2) {
 			if (splitEquation[i].equals("*")) {
-				total *= Double.parseDouble(splitEquation[i + 1]);
+				splitEquation[i + 1] = (Double.parseDouble(splitEquation[i - 1]) * Double.parseDouble(splitEquation[i + 1])) + "";
+				splitEquation[i] = splitEquation[i - 2];
+				splitEquation[i - 1] = "0";
 			} else if (splitEquation[i].equals("/")) {
-				total /= Double.parseDouble(splitEquation[i + 1]);
-			} else if (splitEquation[i].equals("+")) {
+				splitEquation[i + 1] = (Double.parseDouble(splitEquation[i - 1]) / Double.parseDouble(splitEquation[i + 1])) + "";
+				splitEquation[i] = splitEquation[i-2];
+				splitEquation[i - 1] = "0";
+			}
+		}
+		for (int i = 0; i < splitEquation.length; i += 2) {
+			if (splitEquation[i].equals("+")) {
 				total += Double.parseDouble(splitEquation[i + 1]);
 			} else if (splitEquation[i].equals("-")) {
 				total -= Double.parseDouble(splitEquation[i + 1]);
