@@ -19,5 +19,5 @@ public class SpreadsheetLocation implements Location {
 		// TODO Auto-generated method stub
 		return col;
 	}
-
+	
 }

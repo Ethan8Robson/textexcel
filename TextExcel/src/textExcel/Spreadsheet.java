@@ -26,6 +26,7 @@ public class Spreadsheet implements Grid {
 	public String processCommand(String command) {
 		// TODO Auto-generated method stub
 		String splitCommand[] = command.split(" ", 3);
+		splitCommand[0].toUpperCase();
 		if (splitCommand.length == 1 && splitCommand[0].equalsIgnoreCase("clear")) {
 			clearAll();
 		} else if (splitCommand.length == 2) {
@@ -38,7 +39,7 @@ public class Spreadsheet implements Grid {
 			} else if (splitCommand[2].contains("%")) {
 				sheet[cellLocation.getRow()][cellLocation.getCol()] = new PercentCell(splitCommand[2]);
 			} else if (splitCommand[2].contains("(")) {
-				sheet[cellLocation.getRow()][cellLocation.getCol()] = new FormulaCell(splitCommand[2]);
+				sheet[cellLocation.getRow()][cellLocation.getCol()] = new FormulaCell(splitCommand[2], this);
 			} else {
 				sheet[cellLocation.getRow()][cellLocation.getCol()] = new ValueCell(splitCommand[2]);
 			}

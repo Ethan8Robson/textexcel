@@ -19,7 +19,7 @@ public class ValueCell extends RealCell{
 		return fullText;
 	}
 	public double getDoubleValue() {
-		return Integer.parseInt(fullText);
+		return Double.parseDouble(fullText);
 	}
 	
 }

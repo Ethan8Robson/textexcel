@@ -11,9 +11,9 @@ public class TextExcel {
 		// Add your command loop here
 		String decision;
 		String inputLine;
+		Spreadsheet sheet = new Spreadsheet();
 		do {
 			Scanner userInput = new Scanner(System.in);
-			Spreadsheet sheet = new Spreadsheet();
 			System.out.println("What would you like to do?");
 			inputLine = userInput.nextLine();
 			String gridText = sheet.processCommand(inputLine);
