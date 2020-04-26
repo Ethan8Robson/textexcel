@@ -8,10 +8,11 @@ import java.util.Scanner;
 public class TextExcel {
 
 	public static void main(String[] args) {
-		// Add your command loop here
+		// Creating spreadsheet and fields for user input
 		String decision;
 		String inputLine;
 		Spreadsheet sheet = new Spreadsheet();
+		// Command loop for user input, loops until user types "quit"
 		do {
 			Scanner userInput = new Scanner(System.in);
 			System.out.println("What would you like to do?");
@@ -21,7 +22,5 @@ public class TextExcel {
 			System.out.println("Do you want to quit? Type \"quit\" to quit");
 			decision = userInput.nextLine();
 		} while (!decision.toUpperCase().equals("QUIT"));
-		//TestsALL.Helper th = new TestsALL.Helper();
-		//System.out.println(sheet.getGridText());
 	} 
 }
